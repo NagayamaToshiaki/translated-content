@@ -11,7 +11,7 @@ tags:
   - Web
 translation_of: Web/HTML/Element/rb
 ---
-<div>{{HTMLRef}}{{Non-standard_Header}}</div>
+<div>{{HTMLRef}}{{deprecated_header}}</div>
 
 <p><span class="seoSummary"><strong>HTML ルビベース (<code>&lt;rb&gt;</code>) 要素</strong>は、 {{HTMLElement("ruby") }} 表記のベースとなるテキストの部分を区切るために使用されます。つまり、修飾される文字列です。</span>一つの <code>&lt;rb&gt;</code> 要素がベーステキストの不可分な区間を隔てるように囲みます。</p>
 
@@ -61,6 +61,8 @@ translation_of: Web/HTML/Element/rb
 </ul>
 
 <h2 id="Examples" name="Examples">例</h2>
+  
+  <h3 id="using_rb" name="using_rb"><code>&lt;rb&gt;</code>を使った場合</h3>
 
 <p>この例では、元の文字に対して "Kanji" が等価であるという注釈を提供します。</p>
 
@@ -71,6 +73,7 @@ translation_of: Web/HTML/Element/rb
 
 <p>ルビのベーステキストを二つの部分に区切るために二つの <code>&lt;rb&gt;</code> 要素を含めています。一方で、注釈も二つの {{htmlelement("rt")}} 要素で区切っています。</p>
 
+<h3>分離表記</h3>
 <p>なお、この例を完全に分割して注釈された二つのベーステキストの部分で書くこともできます。この場合は <code>&lt;rb&gt;</code> 要素を含める必要はありません。</p>
 
 <pre class="brush: html notranslate">&lt;ruby&gt;
@@ -93,24 +96,7 @@ translation_of: Web/HTML/Element/rb
 
 <p>{{EmbedLiveSample("with-ruby", "100%", 60)}}</p>
 
-<p>上記の HTML はルビに対応して<em>いない</em>ブラウザーでは次のように表示されます。</p>
-
-<div id="without-ruby">
-<div class="hidden">
-<pre class="brush: html notranslate">漢字 (kan ji)</pre>
-
-<pre class="brush: css notranslate">body {
-  font-size: 22px;
-}
-</pre>
-</div>
-</div>
-
-<p>{{EmbedLiveSample("without-ruby", "100%", 60)}}</p>
-
-<div class="note">
-<p><strong>注</strong>: それ以外の例は、 {{HTMLElement("ruby")}} 要素についての記事を参照してください。</p>
-</div>
+<p>それ以外の例は、 {{HTMLElement("ruby")}} 要素についての記事を参照してください。</p>
 
 <h2 id="Specifications" name="Specifications">仕様書</h2>
 
@@ -118,15 +104,11 @@ translation_of: Web/HTML/Element/rb
  <thead>
   <tr>
    <th scope="col">仕様書</th>
-   <th scope="col">状態</th>
-   <th scope="col">備考</th>
   </tr>
  </thead>
  <tbody>
   <tr>
-   <td>{{SpecName('HTML5 W3C', 'textlevel-semantics.html#the-rb-element', '&lt;rb&gt;')}}</td>
-   <td>{{Spec2('HTML5 W3C')}}</td>
-   <td></td>
+   <td>{{SpecName('HTML WHATWG', 'obsolete.html#rb', '&lt;rb&gt;')}}</td>
   </tr>
  </tbody>
 </table>
