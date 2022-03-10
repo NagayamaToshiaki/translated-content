@@ -147,41 +147,6 @@ let min = minOfArray([5, 6, 2, 3, 7]);
 };
 </pre>
 
-<div class="note" style="height: 250px; overflow: auto;">
-<p><strong>注:</strong> 上記で使用している <code>Object.create()</code> メソッドは比較的新しいです。代わりの方法として、以下の例を検討してください。</p>
-
-<p>{{jsxref("Object/__proto__", "Object.__proto__")}} を利用:</p>
-
-<pre class="brush: js notranslate">Function.prototype.construct = function (aArgs) {
-  let oNew = {};
-  oNew.__proto__ = this.prototype;
-  this.apply(oNew, aArgs);
-  return oNew;
-};
-</pre>
-
-<p><a href="/ja/docs/Web/JavaScript/Closures">クロージャ</a>を利用:</p>
-
-<pre class="brush: js notranslate">Function.prototype.construct = function(aArgs) {
-  let fConstructor = this, fNewConstr = function() {
-    fConstructor.apply(this, aArgs);
-  };
-  fNewConstr.prototype = fConstructor.prototype;
-  return new fNewConstr();
-};</pre>
-
-<p>{{jsxref("Function")}} コンストラクターを利用:</p>
-
-<pre class="brush: js notranslate">Function.prototype.construct = function (aArgs) {
-  let fNewConstr = new Function("");
-  fNewConstr.prototype = this.prototype;
-  let oNew = new fNewConstr();
-  this.apply(oNew, aArgs);
-  return oNew;
-};
-</pre>
-</div>
-
 <p>使用例:</p>
 
 <pre class="brush: js notranslate">function MyConstructor() {
