@@ -70,51 +70,6 @@ translation_of: Web/JavaScript/Reference/Global_Objects/Array/filter
 
 <p><code>filter()</code> によって処理される配列要素の範囲は、<code><var>callback</var></code> が最初に呼び出される前に設定されます。<code>filter()</code> の呼び出しが開始された後に (<code><var>callback</var></code> から) 追加された配列要素に対しては、<code><var>callback</var></code> は実行されません。既存の配列要素が削除された場合は、同様にそれらの要素は処理されません。</p>
 
-<h2 id="Polyfill" name="Polyfill">ポリフィル</h2>
-
-<p><code>filter()</code> は ECMA-262 標準の第5版で追加されました。したがって、この標準のすべての実装に存在するとは限りません。</p>
-
-<p>回避策として、スクリプトの最初に以下のコードを挿入して、ネイティブに対応していない ECMA-262 の実装で filter() を使用できるようにすることができます。このアルゴリズムは ECMA-262 第5版で指定されているものと完全に等価で、 <code>fn.call</code> が {{jsxref("Function.prototype.bind()")}} の元の値を評価し、 {{jsxref("Array.prototype.push()")}} が元の値を持つことを仮定しています。</p>
-
-<pre class="brush: js notranslate">if (!Array.prototype.filter){
-  Array.prototype.filter = function(func, thisArg) {
-    'use strict';
-    if ( ! ((typeof func === 'Function' || typeof func === 'function') &amp;&amp; this) )
-        throw new TypeError();
-
-    var len = this.length &gt;&gt;&gt; 0,
-        res = new Array(len), // preallocate array
-        t = this, c = 0, i = -1;
-
-    var kValue;
-    if (thisArg === undefined){
-      while (++i !== len){
-        // checks to see if the key was set
-        if (i in this){
-          kValue = t[i]; // in case t is changed in callback
-          if (func(t[i], i, t)){
-            res[c++] = kValue;
-          }
-        }
-      }
-    }
-    else{
-      while (++i !== len){
-        // checks to see if the key was set
-        if (i in this){
-          kValue = t[i];
-          if (func.call(thisArg, t[i], i, t)){
-            res[c++] = kValue;
-          }
-        }
-      }
-    }
-
-    res.length = c; // shrink down array to proper size
-    return res;
-  };
-}</pre>
-
 <h2 id="Examples" name="Examples">例</h2>
 
 <h3 id="Filtering_out_all_small_values" name="Filtering_out_all_small_values">小さい値をすべて取り除く</h3>
